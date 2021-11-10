@@ -5,99 +5,100 @@
 }
 
 <span>page 1</span><hr />
-<div class="row">
-    <div class="col-md-12">
-        <form asp-action="Create" id="myForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group row">
-                <label asp-for="Title" class="control-label col-form-label-sm col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right"></label>
-                <div class="col-md-5 col-sm-5 col-lg-5 col-5">
-                    <input asp-for="Title" class="form-control form-control-sm" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
+        <form action="/" method="post">
+            <div class="row">
+                <div class="col-md-12">
+                    
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group row">
+                            <label asp-for="Title" class="control-label col-form-label-sm col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right"></label>
+                            <div class="col-md-5 col-sm-5 col-lg-5 col-5">
+                                <input asp-for="Title" class="form-control form-control-sm" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
 
-            
-                <label asp-for="Address" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label col-form-label-sm text-right"></label>
-                <div class=" col-5 col-md-5 col-sm-5 col-lg-5">
-                    <input asp-for="Address" class="form-control form-control-sm" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                            <label asp-for="Address" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label col-form-label-sm text-right"></label>
+                            <div class=" col-5 col-md-5 col-sm-5 col-lg-5">
+                                <input asp-for="Address" class="form-control form-control-sm" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="AddressTypeId" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right col-form-label-sm"></label>
+                            <div class=" col-11 col-md-11 col-sm-11 col-lg-11">
+                                <select asp-for="AddressTypeId" class="form-control form-control-sm select2" asp-items="ViewBag.AddressTypeId">
+                                    <option selected disabled>Select Type</option>
+                                </select>
+                                <span asp-validation-for="AddressTypeId" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Date" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label col-form-label-sm text-right"></label>
+                            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                                <input type="date" asp-for="Date" class="form-control form-control-sm" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+
+                            <label asp-for="Time" class="control-label col-form-label-sm col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right"></label>
+                            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                                <input type="time" asp-for="Time" class="form-control form-control-sm" />
+                                <span asp-validation-for="Time" class="text-danger"></span>
+                            </div>
+
+                            <label asp-for="Remarks" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label col-form-label-sm text-right"></label>
+                            <div class=" col-3 col-md-3 col-sm-3 col-lg-3">
+                                <input asp-for="Remarks" class="form-control form-control-sm" />
+                                <span asp-validation-for="Remarks" class="text-danger"></span>
+                            </div>
+                            <div class=" col-1 col-md-1 col-sm-1 col-lg-1 text-right">
+                                @*<input type="submit" value="Submit" class="btn btn-sm btn-primary" />*@
+                                <input type="button" id="addButton" value="Add" />
+                            </div>
+                        </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label asp-for="AddressTypeId" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right col-form-label-sm"></label>
-                <div class=" col-11 col-md-11 col-sm-11 col-lg-11">
-                    <select asp-for="AddressTypeId" class="form-control form-control-sm select2" asp-items="ViewBag.AddressTypeId">
-                        <option selected disabled>Select Type</option>
-                    </select>
-                    <span asp-validation-for="AddressTypeId" class="text-danger"></span>
 
+            @*<div>
+<a asp-action="Index">Back to List</a>
+</div>*@
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-secondary row">
+                        <span class="p-3 col-form-label control-label col-md-1">?</span>
+                        <div class="col-md-10">
+                            <input type="text" name="search" value="" class="form-control" />
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label asp-for="Date" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label col-form-label-sm text-right"></label>
-                <div class="col-2 col-md-2 col-sm-2 col-lg-2">
-                    <input type="date" asp-for="Date" class="form-control form-control-sm" />
-                    <span asp-validation-for="Date" class="text-danger"></span>
-                </div>
-            
-                <label asp-for="Time" class="control-label col-form-label-sm col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right"></label>
-                <div class="col-2 col-md-2 col-sm-2 col-lg-2">
-                    <input type="time" asp-for="Time" class="form-control form-control-sm" />
-                    <span asp-validation-for="Time" class="text-danger"></span>
-                </div>
-            
-                <label asp-for="Remarks" class="control-label col-1 col-md-1 col-sm-1 col-lg-1 col-form-label col-form-label-sm text-right"></label>
-                <div class=" col-3 col-md-3 col-sm-3 col-lg-3">
-                    <input asp-for="Remarks" class="form-control form-control-sm" />
-                    <span asp-validation-for="Remarks" class="text-danger"></span>
-                </div>
-                <div class=" col-1 col-md-1 col-sm-1 col-lg-1 text-right">
-                    @*<input type="submit" value="Submit" class="btn btn-sm btn-primary" />*@
-                    <input type="button" id="addButton" value="Add" />
+            <div class="row">
+                <table class="table table-bordered table-sm" id="myTable">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Title</td>
+                            <td>Address</td>
+                            <td>Type</td>
+                            <td>Date</td>
+                            <td>Time</td>
+                            <td>Remarks</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-outline-info " id="finalSubmitBtn">Submit</button>
                 </div>
             </div>
         </form>
-    </div>
-</div>
 
-@*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
-<div class="row">
-    <div class="col-md-12">
-        <div class="alert alert-secondary row">
-            <span class="p-3 col-form-label control-label col-md-1">?</span>
-            <div class="col-md-10">
-                <input type="text" name="search" value="" class="form-control" />
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <table class="table table-bordered table-sm" id="myTable">
-        <thead>
-            <tr>
-                <td>#</td>
-                <td>Title</td>
-                <td>Address</td>
-                <td>Type</td>
-                <td>Date</td>
-                <td>Time</td>
-                <td>Remarks</td>
-                <td>Actions</td>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-
-        </tbody>
-    </table>
-
-</div>
-<div class="row">
-    <div class="col-md-12 text-right">
-        <button class="btn btn-outline-info " id="finalSubmitBtn">Submit</button>
-    </div>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -119,6 +120,13 @@
                 let tr = '<tr><td>' + rowCount + '</td><td>' + title + '</td><td>' + address + '</td><td>' + type + '</td><td>' + date + '</td><td>' + time + '</td><td>' + remarks + '</td><td><button class="btn btn-sm btn-danger gridRowDeleteBtn" >Delete</button></td></tr>';
                 $('#tableBody').append(tr);
             }
+            
+            $('#Title').val("");
+            $('#Date').val("");
+            $('#Time').val("");
+            $('#Remarks').val("");
+            $('#Address').val("");
+
             $('.gridRowDeleteBtn').click(function () {
                 $(this).closest('tr').remove();
             });
