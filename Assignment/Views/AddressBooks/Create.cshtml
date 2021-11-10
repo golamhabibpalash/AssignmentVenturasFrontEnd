@@ -105,15 +105,18 @@
         $('#addButton').click(function () {
             let title = $('#Title').val();
             let address = $('#Address').val();
-            let type = $('#AddressTypeId option:selected').text();
-            if (title=='' ) {
-
-            }
+            let type = $('#AddressTypeId option:selected').text();            
             let date = $('#Date').val();
             let time = $('#Time').val();
             let remarks = $('#Remarks').val();
-            let tr = '<tr><td>' + title + '</td><td>' + address + '</td><td>' + type + '</td><td>' + date + '</td><td>' + time + '</td><td>' + remarks + '</td><td>Action</td></tr>';
-            $('#tableBody').append(tr);
+            if (title == '' || address == '' || date == '' || time == '') {
+
+            }
+            else {
+                let tr = '<tr><td>' + title + '</td><td>' + address + '</td><td>' + type + '</td><td>' + date + '</td><td>' + time + '</td><td>' + remarks + '</td><td>Action</td></tr>';
+                $('#tableBody').append(tr);
+            }
+            
         });
     });
 </script>
