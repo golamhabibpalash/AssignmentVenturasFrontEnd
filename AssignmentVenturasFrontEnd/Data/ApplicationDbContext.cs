@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AssignmentVenturasFrontEnd.Models;
 
 namespace AssignmentVenturasFrontEnd.Data
 {
@@ -12,5 +13,7 @@ namespace AssignmentVenturasFrontEnd.Data
             : base(options)
         {
         }
+        public DbSet<AssignmentVenturasFrontEnd.Models.AddressBook> AddressBook { get; set; }
+        public DbSet<AssignmentVenturasFrontEnd.Models.AddressType> AddressType { get; set; }
     }
 }

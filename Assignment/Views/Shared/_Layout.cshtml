@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Assignment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+
+    <link href="~/lib/bootstrap/dist/css/select2-bootstrap4.css" rel="stylesheet" />
+
+    <style>
+        @@media (min-width: 576px) {
+            body {
+                font-size: 0.25rem;
+            }
+        }
+
+        @@media (min-width: 768px) {
+            body {
+                font-size: 0.5rem;
+            }
+        }
+
+        @@media (min-width: 992px) {
+            body {
+                font-size: 0.75rem;
+            }
+        }
+
+        @@media (min-width: 1200px) {
+            body {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Assignment</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+                <div class="col-md-3 h-100 vh-100 pr-4 absolute-wrapper" style="background: #d1ebac ">
+                    <div class="row vh-100 pt-5 pl-4" style="background:#b8f895">
+                        <ul>
+                            <li class="list-group"> <h3>Menu Bar</h3> </li>
+                            <li class="list-group nav-item">
+                                <a asp-action="Create" asp-controller="AddressBooks" class="nav-link">Page 1</a>
+                            </li>
+                            <li class="list-group nav-item">
+                                <a asp-action="Index" asp-controller="AddressTypes" class="nav-link">Type</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row position-absolute">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Assignment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/select2/js/select2.full.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".select2").select2({
+                placeholder: "Select",
+                theme: "bootstrap4",
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>
