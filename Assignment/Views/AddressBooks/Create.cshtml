@@ -7,7 +7,7 @@
 <span>page 1</span><hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Create">
+        <form asp-action="Create" id="myForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group row">
                 <label asp-for="Title" class="control-label col-form-label-sm col-1 col-md-1 col-sm-1 col-lg-1 col-form-label text-right"></label>
@@ -74,9 +74,10 @@
     </div>
 </div>
 <div class="row">
-    <table class="table table-bordered table-sm">
+    <table class="table table-bordered table-sm" id="myTable">
         <thead>
             <tr>
+                <td>#</td>
                 <td>Title</td>
                 <td>Address</td>
                 <td>Type</td>
@@ -94,7 +95,7 @@
 </div>
 <div class="row">
     <div class="col-md-12 text-right">
-        <button class="btn btn-outline-info ">Submit</button>
+        <button class="btn btn-outline-info " id="finalSubmitBtn">Submit</button>
     </div>
 </div>
 
@@ -110,13 +111,20 @@
             let time = $('#Time').val();
             let remarks = $('#Remarks').val();
             if (title == '' || address == '' || date == '' || time == '') {
-
+                let ms = $('#myForm').validate();
+                console.log(ms.dataset.valRequired);
             }
             else {
-                let tr = '<tr><td>' + title + '</td><td>' + address + '</td><td>' + type + '</td><td>' + date + '</td><td>' + time + '</td><td>' + remarks + '</td><td>Action</td></tr>';
+                let rowCount = $('#tableBody tr').length+1;
+                let tr = '<tr><td>' + rowCount + '</td><td>' + title + '</td><td>' + address + '</td><td>' + type + '</td><td>' + date + '</td><td>' + time + '</td><td>' + remarks + '</td><td><button class="btn btn-sm btn-danger gridRowDeleteBtn" >Delete</button></td></tr>';
                 $('#tableBody').append(tr);
             }
-            
+            $('.gridRowDeleteBtn').click(function () {
+                $(this).closest('tr').remove();
+            });
+            $('#finalSubmitBtn').click(function () {
+                $('#tableBody').empty();
+            });
         });
     });
 </script>
