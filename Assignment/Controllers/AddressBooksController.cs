@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assignment.Data;
 using Assignment.Models;
+using Assignment.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment.Controllers
 {
@@ -46,27 +48,34 @@ namespace Assignment.Controllers
         }
 
         // GET: AddressBooks/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["AddressTypeId"] = new SelectList(_context.Set<AddressType>(), "Id", "AddressTypeName");
             return View();
         }
 
-        // POST: AddressBooks/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Address,AddressTypeId,Date,Time,Remarks")] AddressBook addressBook)
+        public async Task<IActionResult> Create(AddressVM model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(addressBook);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //AddressBook addressBook = new AddressBook();
+                if (model!=null)
+                {
+                    foreach (var address in model.AddressBooks)
+                    {
+                        //addressBook.AddressBooks.Add(address);
+                        _context.AddressBook.Add(address);
+                    }
+                    await _context.SaveChangesAsync();
+                    return View();
+                }                
             }
-            ViewData["AddressTypeId"] = new SelectList(_context.Set<AddressType>(), "Id", "AddressTypeName", addressBook.AddressTypeId);
-            return View(addressBook);
+
+            ViewData["AddressTypeId"] = new SelectList(_context.Set<AddressType>(), "Id", "AddressTypeName");
+            return View(model);
         }
 
         // GET: AddressBooks/Edit/5
@@ -155,6 +164,32 @@ namespace Assignment.Controllers
         private bool AddressBookExists(int id)
         {
             return _context.AddressBook.Any(e => e.Id == id);
+        }
+        public ActionResult Create1()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create1(AddressVM addressVM)
+        {
+            foreach (var item in addressVM.AddressBooks)
+            {
+                _context.AddressBook.Add(item);                
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> SearchByKeyword(string myKeyword)
+        {
+            var allAddress = await _context.AddressBook.ToListAsync();
+            if (myKeyword!=null)
+            {
+                myKeyword = myKeyword.Trim().ToLower();
+                allAddress = allAddress.Where(a => a.Title.ToLower().Contains(myKeyword) || a.Remarks.ToLower().Contains(myKeyword) || a.Address.ToLower().Contains(myKeyword)).ToList();
+            }
+            return Json(allAddress);
         }
     }
 }

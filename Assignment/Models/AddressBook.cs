@@ -21,7 +21,9 @@ namespace Assignment.Models
         public DateTime Date { get; set; }
 
         [Required]
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
         public string Remarks { get; set; }
+
+        //public ICollection<AddressBook> AddressBooks { get; set; }
     }
 }
