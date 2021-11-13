@@ -183,7 +183,7 @@ namespace Assignment.Controllers
         [HttpPost]
         public async Task<JsonResult> SearchByKeyword(string myKeyword)
         {
-            var allAddress = await _context.AddressBook.ToListAsync();
+            var allAddress = await _context.AddressBook.Include(a => a.AddressType).ToListAsync();
             if (myKeyword!=null)
             {
                 myKeyword = myKeyword.Trim().ToLower();
