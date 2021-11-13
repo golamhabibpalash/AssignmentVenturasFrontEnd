@@ -165,20 +165,7 @@ namespace Assignment.Controllers
         {
             return _context.AddressBook.Any(e => e.Id == id);
         }
-        public ActionResult Create1()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Create1(AddressVM addressVM)
-        {
-            foreach (var item in addressVM.AddressBooks)
-            {
-                _context.AddressBook.Add(item);                
-            }
-            _context.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        
 
         [HttpPost]
         public async Task<JsonResult> SearchByKeyword(string myKeyword)

@@ -139,7 +139,7 @@
                 let dateTd = '<td><input type="hidden" name="AddressBooks[' + index +'].Date" value="' + date + '" />' + date + '</td>';
                 let timeTd = '<td><input type="hidden" name="AddressBooks[' + index +'].Time" value="' + time + '" />' + time + '</td>';
                 let remarksTd = '<td><input type="hidden" type="hidden" name="AddressBooks[' + index +'].Remarks" value="' + remarks + '" />' + remarks + '</td>';
-                let deleteTd = '<td class="btn btn-sm btn-danger gridRowDeleteBtn" >Delete</td>';
+                let deleteTd = '<td class="btn-sm btn-danger gridRowDeleteBtn" >Delete</td>';
 
                 let tr = '<tr>' + titelTd + addressTd + typeTd + dateTd + timeTd + remarksTd + deleteTd+ '</tr>';
                 $('#tableBody').append(tr);
@@ -222,9 +222,7 @@
             interactiveTolerance: 300000
         });
 
-        $(document).on('click', '.close', function () {
-            $('.tooltipster-base').hide();
-        });
+       
 
     });
     
